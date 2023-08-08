@@ -37,6 +37,9 @@ function handleChangeOptions(evt) {
     
     const breedID = evt.target.value
     fetchCatByBreed(breedID).then(resp => {
+        if(!resp.data.length){
+        Notiflix.Notify.failure('Sorry, we did not find the information')
+        }
         createMarkupCat(resp.data)
         refs.loaderEl.classList.add('is-hidden');
         refs.catInfoEl.classList.remove('is-hidden');
